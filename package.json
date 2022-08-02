@@ -1,0 +1,25 @@
+{
+  "name": "recipe-app",
+  "version": "1.0.0",
+  "description": "",
+  "default": "index.html",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/makaubenson/forkify.git"
+  },
+  "author": "Benson Makau",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/makaubenson/forkify/issues"
+  },
+  "homepage": "https://github.com/makaubenson/forkify#readme",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.6.2",
+    "parcel": "^2.6.2",
+    "sass": "^1.26.10"
+  }
+}
