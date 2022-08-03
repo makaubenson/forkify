@@ -35,7 +35,8 @@ const controlRecipes = async function () {
 
     ///
   } catch (err) {
-    alert(err);
+    // alert(err);
+    console.error(err);
   }
 };
 // controlRecipes();
