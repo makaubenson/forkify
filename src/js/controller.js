@@ -30,7 +30,7 @@ const controlRecipes = async function () {
     // alert(err);
     // console.error(err);
 
-    recipeView.renderError(`${err} BM`);
+    recipeView.renderError();
   }
 };
 // controlRecipes();
