@@ -552,10 +552,11 @@ const controlRecipes = async function() {
         // const { recipe } = model.state;
         // 2) Rendering recipe
         (0, _recipeViewJsDefault.default).render(_modalJs.state.recipe);
-    ///
+    //
     } catch (err) {
         // alert(err);
-        console.error(err);
+        // console.error(err);
+        (0, _recipeViewJsDefault.default).renderError(`${err} BM`);
     }
 };
 // controlRecipes();
@@ -2288,6 +2289,7 @@ const loadRecipe = async function(id) {
     } catch (err) {
         // temporary error handling
         console.error(`${err} BB`);
+        throw err;
     }
 };
 
@@ -2327,7 +2329,7 @@ const getJSON = async function(url) {
     }
 };
 
-},{"regenerator-runtime":"dXNgZ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./config.js":"k5Hzs"}],"l60JC":[function(require,module,exports) {
+},{"regenerator-runtime":"dXNgZ","./config.js":"k5Hzs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"l60JC":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 // import icons from '../img/icons.svg'; //Parcel1
@@ -2346,16 +2348,26 @@ class RecipeView {
      #clear() {
         this.#parentElement.innerHTML = "";
     }
-    renderSpinner = function() {
+    renderSpinner() {
         const markup = `
     <div class="spinner">
     <svg>
       <use href="${(0, _iconsSvgDefault.default)}.svg#icon-loader"></use>
     </svg>
   </div>`;
-        this.#parentElement.innerHTML = "";
+        this.#clear;
         this.#parentElement.insertAdjacentHTML("afterbegin", markup);
-    };
+    }
+    renderError(message) {
+        const markup = `<div class="error">
+    <div>
+      <svg>
+        <use href="${(0, _iconsSvgDefault.default)}#icon-alert-triangle"></use>
+      </svg>
+    </div>
+    <p>${message}</p>
+  </div> `;
+    }
     addHandlerRender(handler) {
         [
             "hashchange",
