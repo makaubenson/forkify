@@ -2,6 +2,7 @@ import * as model from './modal.js';
 import recipeView from './views/recipeView.js';
 import searchView from './views/searchView.js';
 import resultsView from './views/resultsView.js';
+import paginationView from './views/paginationView.js';
 
 import 'core-js/stable'; //polyfilling everything else
 import 'regenerator-runtime/runtime'; //polyfilling async await
@@ -24,8 +25,6 @@ const controlRecipes = async function () {
     // const { recipe } = model.state;
     // 2) Rendering recipe
     recipeView.render(model.state.recipe);
-
-    //
   } catch (err) {
     recipeView.renderError();
   }
@@ -44,18 +43,37 @@ const controlSearchResults = async function () {
 
     //3) render results
     // console.log(model.state.search.results);
-
     // resultsView.render(model.state.search.results);
+    resultsView.render(model.getSearchResultsPage(6));
 
-    resultsView.render(model.getSearchResultsPage(1));
+    //4) render initial pagination buttons
+    paginationView.render(model.state.search);
   } catch (err) {
     console.log(err);
   }
 };
-controlSearchResults();
+// controlSearchResults();
+
+const controlPagination = function (goToPage) {
+  //1) render NEW results
+  resultsView.render(model.getSearchResultsPage(goToPage));
+
+  //2) render NEW pagination buttons
+  paginationView.render(model.state.search);
+};
+
+const controlServings = function (newServings) {
+  //Update Recipe Servings in the state
+  model.updateServings(newServings);
+
+  //update recipe view
+  recipeView.render(model.state.recipe);
+};
 
 const init = function () {
   recipeView.addHandlerRender(controlRecipes);
+  recipeView.addHandlerUpdateServings(controlServings);
   searchView.addHandlerSearch(controlSearchResults);
+  paginationView.addHandlerClick(controlPagination);
 };
 init();
