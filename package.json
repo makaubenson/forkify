@@ -5,14 +5,14 @@
   "default": "index.html",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html"
+    "build": "parcel build index.html --dist-dir ./dist"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/makaubenson/forkify.git"
   },
   "author": "Benson Makau",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/makaubenson/forkify/issues"
   },
